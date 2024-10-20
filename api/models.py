@@ -12,10 +12,10 @@ class User(AbstractUser):
         max_length=10,
         choices=USER_TYPE_CHOICES,
         null=True,
-        blank=True  # Позволяет оставлять поле пустым
+        blank=True
     )
 
-    REQUIRED_FIELDS = ['email']  # Уберите 'user_type' из обязательных полей
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username

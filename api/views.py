@@ -10,15 +10,15 @@ from .serializers import (
     StockSerializer
 )
 from .permissions import IsSupplier, IsConsumer
-from .models import Warehouse, Product, Stock  # Добавленный импорт
+from .models import Warehouse, Product, Stock
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 User = get_user_model()
 
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = UserRegistrationSerializer  # Можно использовать отдельный сериализатор для списка пользователей
-    permission_classes = [AllowAny]  # Настройте по необходимости
+    serializer_class = UserRegistrationSerializer
+    permission_classes = [AllowAny]
 
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer

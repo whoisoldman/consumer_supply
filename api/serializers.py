@@ -14,7 +14,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'password', 'password2', 'user_type')
         extra_kwargs = {
-            'user_type': {'required': False},  # Сделано необязательным
+            'user_type': {'required': False},
         }
 
     def validate(self, attrs):
@@ -23,11 +23,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        validated_data.pop('password2', None)  # Удаляем поле password2
+        validated_data.pop('password2', None)
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
-            user_type=validated_data.get('user_type')  # Может быть None
+            user_type=validated_data.get('user_type')
         )
         user.set_password(validated_data['password'])
         user.save()
